@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Cyberbullying Detection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <div class="container">
+    <h2>🛡️ Cyberbullying Detector</h2>
+    <p>Enter text below to check for harmful content.</p>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash-message flash-{{ category }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <textarea name="text" rows="5" placeholder="Type a message here..."></textarea>
+      <button type="submit">Analyze Text</button>
+    </form>
+
+    {% if result %}
+      <div class="result-box result-{{ result.status_code }}">
+        
+        <h3>{{ result.status_text }}</h3>
+
+        {% if result.status_code != 'safe' %}
+          <p><b>Type:</b> {{ result.label|capitalize }}</p>
+        {% endif %}
+        
+        {% if result.status_code == 'warning' %}
+           <p><i>Note: This content contains negative language but may not be specific hate speech.</i></p>
+        {% endif %}
+
+        <hr style="opacity: 0.3;">
+        <p style="font-size: 0.9em;"><i>Input: "{{ result.text }}"</i></p>
+      </div>
+    {% endif %}
+
+    <div style="text-align: center; margin-top: 30px;">
+    <a href="/login" style="color: #6c757d; text-decoration: none; font-size: 0.9em;">🔐 Admin Login</a>
+    </div>
+  </div>
+
+</body>
+</html>
