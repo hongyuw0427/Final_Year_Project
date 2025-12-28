@@ -1,7 +1,4 @@
-<<<<<<< Updated upstream
-=======
 #pip install -r requirements.txt
->>>>>>> Stashed changes
 from flask import Flask, render_template, request, send_file, session, redirect, url_for, flash
 from io import StringIO, BytesIO
 import csv

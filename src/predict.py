@@ -34,29 +34,13 @@ embedder = SentenceTransformer(emb_model_name)
 print("✅ All models loaded successfully.")
 
 def predict_text(text: str):
-<<<<<<< Updated upstream
-    """
-    Returns: (label, score)
-    - label: predicted class name (e.g., 'religion', 'age')
-    - score: confidence probability (0.0 to 1.0)
-    """
-=======
->>>>>>> Stashed changes
     # 1. Generate TF-IDF features
     x_tfidf = tfidf.transform([text])
 
     # 2. Generate Embedding features
-<<<<<<< Updated upstream
-    # convert_to_numpy=True is default; wrap in csr_matrix for stacking
     x_emb = embedder.encode([text], convert_to_numpy=True)
     
     # 3. FUSION (Stack them just like in training)
-    # Result matches the shape [1, 3000 + 384]
-=======
-    x_emb = embedder.encode([text], convert_to_numpy=True)
-    
-    # 3. FUSION (Stack them just like in training)
->>>>>>> Stashed changes
     x_final = hstack([x_tfidf, csr_matrix(x_emb)])
 
     # 4. Predict
