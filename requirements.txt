@@ -1,0 +1,6 @@
+Flask
+scikit-learn
+sentence-transformers
+scipy
+joblib
+numpy

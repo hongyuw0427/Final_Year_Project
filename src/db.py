@@ -27,7 +27,10 @@ def insert_log(text: str, prediction: str, score):
     conn = get_conn()
     cur = conn.cursor()
     cur.execute(
+<<<<<<< Updated upstream
         "INSERT INTO logs (created_at, text, prediction, score) VALUES (?, ?, ?, ?)",
+=======
+>>>>>>> Stashed changes
         (datetime.now().isoformat(timespec="seconds"), text, prediction, score)
     )
     conn.commit()
